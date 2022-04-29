@@ -19,10 +19,8 @@ public class DB {
                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/coursejdbc", "root", "");
            }catch(SQLException e){
                throw  new DBException(e.getMessage());
-           }
-            
+           }  
         }
-        
         return conn;
     }
     
@@ -33,9 +31,25 @@ public class DB {
             }catch(SQLException e){
                 throw  new DBException(e.getMessage());
             }
-            
         }
         return conn;
     }
-    
+    public static void closeStatement(Statement st){
+        if(st != null){
+            try{
+                 st.close();
+            }catch(SQLException e){
+                throw new DBException(e.getMessage());
+            }
+        }
+    }
+     public static void closeResultSet(ResultSet rs){
+        if(rs != null){
+            try{
+                 rs.close();
+            }catch(SQLException e){
+                throw new DBException(e.getMessage());
+            }
+        }
+    }
 }
