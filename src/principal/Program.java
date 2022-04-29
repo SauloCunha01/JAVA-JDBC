@@ -5,6 +5,8 @@
  */
 package principal;
 
+import db.DB;
+import java.sql.Connection;
 /**
  *
  * @author Saulo
@@ -15,7 +17,8 @@ public class Program {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+      Connection conn = DB.getConncetion();
+      DB.closeConnection();
     }
     
 }

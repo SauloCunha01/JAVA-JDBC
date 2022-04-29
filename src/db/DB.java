@@ -26,6 +26,16 @@ public class DB {
         return conn;
     }
     
-    
+    public static Connection closeConnection(){
+        if(conn != null){
+            try{
+                conn.close();
+            }catch(SQLException e){
+                throw  new DBException(e.getMessage());
+            }
+            
+        }
+        return conn;
+    }
     
 }
