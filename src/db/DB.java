@@ -14,9 +14,9 @@ public class DB {
     private static Connection conn = null;
     
     public static Connection getConncetion(){
-        if(conn !=null){
+        if(conn ==null){
            try{
-               conn = DriverManager.getConnection("jdbc:mysql//localhost:3306/aluno", "root", "");
+               conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/coursejdbc", "root", "");
            }catch(SQLException e){
                throw  new DBException(e.getMessage());
            }
@@ -27,7 +27,7 @@ public class DB {
     }
     
     public static Connection closeConnection(){
-        if(conn != null){
+        if(conn == null){
             try{
                 conn.close();
             }catch(SQLException e){
