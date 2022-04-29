@@ -76,9 +76,30 @@ public class Program {
         }
     }
     
+    public static void atualizarDados(){
+        try{
+            conn  = DB.getConncetion();
+            ps = conn.prepareStatement("UPDATE seller SET BaseSalary = BaseSalary + ? WHERE DepartmentId = ?");
+            ps.setDouble(1, 200);
+            ps.setInt(2,2);
+           
+            int rowsAffected = ps.executeUpdate();
+            System.out.println("Done! Rows Affected: "+rowsAffected);
+            
+            
+                
+        }catch(SQLException e){
+        e.printStackTrace();
+    }finally{
+            DB.closeStatement(ps);
+            DB.closeConnection();
+        }
+        
+    }
+    
     public static void main(String[] args) {
-      exibirDados();
-      inserirDados();
+    
+      atualizarDados();
     }
     
 }
