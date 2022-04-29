@@ -15,15 +15,14 @@ import java.sql.SQLException;
  * @author Saulo
  */
 public class Program {
-
+    public static Connection conn = null;
+    public static Statement st = null;
+    public static ResultSet rs = null;
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-      Connection conn = null;
-      Statement st = null;
-      ResultSet rs = null;
-      try{
+    public static void exibirDados(){
+          try{
           //Recuperar Dados
           conn = DB.getConncetion();
           st = conn.createStatement();//Criando Statemente que vai preparar a SQL          
@@ -41,6 +40,12 @@ public class Program {
           DB.closeStatement(st);
           DB.closeConnection();
       }
+    }
+    
+    
+    public static void main(String[] args) {
+      exibirDados();
+    
     }
     
 }
