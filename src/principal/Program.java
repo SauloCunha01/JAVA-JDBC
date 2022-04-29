@@ -6,6 +6,7 @@
 package principal;
 
 import db.DB;
+import db.DBIntegrityException;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.*;
@@ -97,9 +98,32 @@ public class Program {
         
     }
     
+    public static void excluirDados(){
+        /*falahas de integridade Inicial,  só vou poder apagar registros de
+        departamentos que não estão em uso como chave estrageira*/
+         try{
+            conn  = DB.getConncetion();
+            ps = conn.prepareStatement("Delete from department "
+                    + "where "
+                    + "Id= ?");
+           ps.setInt(1,2);
+           
+            int rowsAffected = ps.executeUpdate();
+            System.out.println("Done! Rows Affected: "+rowsAffected);
+            
+            
+                
+        }catch(SQLException e){
+            throw new DBIntegrityException(e.getMessage());
+    }finally{
+            DB.closeStatement(ps);
+            DB.closeConnection();
+        }
+    }
     public static void main(String[] args) {
     
-      atualizarDados();
+      
+        excluirDados();
     }
     
 }
